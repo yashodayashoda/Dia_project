@@ -4,6 +4,7 @@ import joblib
 import os
 
 
+
 # Core Libraries
 import pandas as pd
 import numpy as np
@@ -47,10 +48,10 @@ def get_value(val):
 	    if val == key:
 		    return value 
         
-# def get_value(val,my_dict):
-# 	for key,value in my_dict.items():
-# 		if val == key:
-# 			return value 
+def get_value(val,my_dict):
+	for key,value in my_dict.items():
+		if val == key:
+			return value 
 
 def load_model(model_file):
 	loaded_model = joblib.load(open(os.path.join(model_file),"rb"))
@@ -136,14 +137,14 @@ def run_ml_app():
         if submenu == "Logistic_Regression": 
             st.subheader("Logistic Regression Model")
             
-            model = load_model(r"C:\Users\WINNER DESIGN GROUP\Desktop\Project_DM\models\log_regression_05_20_2023.pkl")
+            model = load_model(r"C:\Users\Windows\Downloads\Project_Streamlit-main\Project_Streamlit-main\data\diabetes_data_upload.csv http://localhost:8890/edit/df_pickle.pkl")
             prediction = model.predict(single_sample)
             st.write(prediction)
             
         else:
             st.subheader("Decision Tree")
             
-            model = load_model(r"C:\Users\WINNER DESIGN GROUP\Desktop\Project_DM\models\log_regression_05_20_2023.pkl")
+            model = load_model(r"C:\Users\Windows\Downloads\Project_Streamlit-main\Project_Streamlit-main\data\diabetes_data_upload.csv http://localhost:8890/edit/df_pickle.pkl")
             prediction = model.predict(single_sample)
             st.write(prediction)
             

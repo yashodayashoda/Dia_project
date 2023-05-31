@@ -25,13 +25,15 @@ def load_data(data):
 # Paths
 
 
-data = r"C:\Users\WINNER DESIGN GROUP\Desktop\Project_DM\data\diabetes_data_upload.csv"
+data = r"C:\Users\Windows\Downloads\Project_Streamlit-main\Project_Streamlit-main\data\diabetes_data_upload.csv"
 
-data_cleanded = r"C:\Users\WINNER DESIGN GROUP\Desktop\Project_DM\data\diabetes_data_upload_clean.csv"
+data_cleanded = r"C:\Users\Windows\Downloads\Project_Streamlit-main\Project_Streamlit-main\data\diabetes_data_upload_clean.csv"
 
-data_freq = r"C:\Users\WINNER DESIGN GROUP\Desktop\Project_DM\data\freqdist_of_age_data.csv"
+data_freq = r"C:\Users\Windows\Downloads\Project_Streamlit-main\Project_Streamlit-main\data\freqdist_of_age_data.csv"
 
-def run_eda_app():
+
+
+def run_eda_app():    
     st.header("EDA")
     
     sub = ["Descriptive",'Plot']
@@ -58,6 +60,10 @@ def run_eda_app():
         with st.expander("Class Distribution"):
             st.dataframe(df['class'].value_counts())
 
+        with st.expander("Class Distribution"):
+            st.dataframe(df.describe().T)
+               
+
     else:
         st.subheader("Plot")
         
@@ -66,9 +72,9 @@ def run_eda_app():
         with col1:
             
             with st.expander("Distribution of Gender"):
-                # fig = plt.figure()
-                # sns.countplot(x='Gender', data = df)
-                # st.pyplot(fig)
+                fig = plt.figure()
+                sns.countplot(x='Gender', data = df)
+                st.pyplot(fig)
                 
                 gen_df = df['Gender'].value_counts().to_frame()
                 gen_df = gen_df.reset_index()
@@ -85,7 +91,7 @@ def run_eda_app():
         with col2:
             
             with st.expander("Gender Distribution"):
-                st.dataframe(df['Gender'].value_counts())
+                st.dataframe(df['Gender'].value_counts())   
                 
             with st.expander("Class Distribution"):
                 st.dataframe(df['class'].value_counts())
@@ -95,9 +101,9 @@ def run_eda_app():
             st.plotly_chart(p2, use_container_width=True)
             
         with st.expander("Outlier Detection Plot"):
-            # fig = plt.figure()
-            # sns.boxplot(df['Age'])
-            # st.pyplot(fig)
+            fig = plt.figure()
+            sns.boxplot(df['Age'])
+            st.pyplot(fig)
             
             p3 = px.box(df, x='Age', color='Gender')
             st.plotly_chart(p3, use_container_width=True)
